@@ -131,6 +131,55 @@
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     }
 
+    /* ── Cursor glow ───────────────────────────────────── */
+    .cursor-glow {
+      position: fixed;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.07) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: left .12s ease, top .12s ease, opacity .4s;
+      opacity: 0;
+    }
+
+    /* ── Hero zoom-out — inner scales on scroll ────────── */
+    .hero-inner {
+      will-change: transform, opacity;
+      transform-origin: center center;
+    }
+
+    /* ── Pricing 3D tilt ───────────────────────────────── */
+    .pricing-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* ── Animated underline on section titles ──────────── */
+    .section-title-wrap { position: relative; display: inline-block; }
+    .section-title-wrap::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width .6s cubic-bezier(.22,1,.36,1);
+    }
+    .section-title-wrap.done::after { width: 100%; }
+
+    /* ── Cake card shimmer on hover ────────────────────── */
+    .cake-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform .55s ease;
+      pointer-events: none;
+    }
+    .cake-card:hover .cake-img-wrap::after { transform: translateX(100%); }
+
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     @media (min-width: 640px) { .wrap { padding: 0 32px; } }
 
@@ -713,8 +762,50 @@
     <p class="reveal up d2">© 2026 Pastelaria Doce Encanto · Todos os direitos reservados</p>
   </footer>
 
+  <!-- Cursor glow element -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <script>
     const WORKER_URL = 'https://pastelaria-worker.tfbarata.workers.dev';
+
+    // ── Cursor glow ─────────────────────────────────────
+    const glow = document.getElementById('cursorGlow');
+    let glowVisible = false;
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+      if (!glowVisible) { glow.style.opacity = '1'; glowVisible = true; }
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; glowVisible = false; });
+
+    // ── Hero zoom-out on scroll ──────────────────────────
+    const heroInner = document.querySelector('.hero-inner');
+    const heroSection = document.querySelector('.hero');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const heroH = heroSection.offsetHeight;
+      const progress = Math.min(scrolled / heroH, 1);
+      const scale = 1 - progress * 0.25;
+      const opacity = 1 - progress * 0.65;
+      const translateY = progress * -50;
+      heroInner.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+      heroInner.style.opacity = opacity;
+    }, { passive: true });
+
+    // ── Pricing cards — subtle 3D tilt ──────────────────
+    document.querySelectorAll('.pricing-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width  - 0.5;
+        const y = (e.clientY - r.top)  / r.height - 0.5;
+        const base = card.classList.contains('featured') ? -14 : -6;
+        card.style.transform =
+          `perspective(700px) rotateX(${-y * 7}deg) rotateY(${x * 7}deg) translateY(${base}px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
