@@ -107,7 +107,6 @@
       box-shadow: 0 12px 32px rgba(37,211,102,.45);
     }
     .whatsapp-btn:active { transform: scale(.95); }
-    /* Pulse ring */
     .whatsapp-btn::before {
       content: '';
       position: absolute;
@@ -187,7 +186,6 @@
     }
     @media (min-width: 640px) { .hero { padding: 80px 32px; } }
 
-    /* Animated background rings */
     .hero-rings {
       position: absolute;
       inset: 0;
@@ -211,7 +209,6 @@
       100% { opacity: 0; transform: scale(1.1); }
     }
 
-    /* Grain texture overlay */
     .hero::before {
       content: '';
       position: absolute;
@@ -223,7 +220,6 @@
 
     .hero-inner { position: relative; z-index: 1; max-width: 700px; }
 
-    /* Animated logo mark */
     .hero-mark {
       display: inline-block;
       width: 64px; height: 64px;
@@ -236,7 +232,6 @@
       to { opacity: 1; transform: scale(1) rotate(0deg); }
     }
 
-    /* Animated headline — each word slides up */
     .hero-headline {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -287,7 +282,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Gold divider line animated */
     .hero-line {
       width: 0; height: 2px;
       background: var(--gold);
@@ -296,7 +290,6 @@
     }
     @keyframes growLine { to { width: 56px; } }
 
-    /* Scroll indicator */
     .scroll-hint {
       position: absolute;
       bottom: 36px; left: 50%;
@@ -327,7 +320,6 @@
       50%      { transform: translateY(6px); }
     }
 
-    /* Buttons */
     .btn {
       display: inline-block;
       font-family: 'Lato', sans-serif;
@@ -391,7 +383,6 @@
     }
     .cake-card:hover img { transform: scale(1.07); }
 
-    /* Gold hover bar on left */
     .cake-card::after {
       content: '';
       position: absolute;
@@ -427,7 +418,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Decorative large circle */
     .precos::before {
       content: '';
       position: absolute;
@@ -606,6 +596,18 @@
     }
     .form-success p { color: var(--brown); opacity: .65; max-width: 360px; margin: 0 auto; }
 
+    /* Erro de envio */
+    .send-error {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--red-err);
+      background: #fff5f5;
+      font-size: .875rem;
+      color: var(--red-err);
+    }
+    .send-error.show { display: block; }
+
     /* ══════════════════════════════════════════════════════
        FOOTER
     ══════════════════════════════════════════════════════ */
@@ -681,7 +683,6 @@
       <div class="ring"></div>
     </div>
     <div class="hero-inner">
-      <!-- Animated pastry icon -->
       <div class="hero-mark" aria-hidden="true">
         <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="32" cy="32" r="30" stroke="#C9A84C" stroke-width="1.5"/>
@@ -833,10 +834,10 @@
             <div class="select-wrap">
               <select id="bolo" name="bolo" required aria-describedby="bolo-err">
                 <option value="">Selecione um bolo</option>
-                <option value="classico">Bolo Clássico</option>
-                <option value="festa">Bolo de Festa</option>
-                <option value="casamento">Bolo de Casamento</option>
-                <option value="outro">Outro</option>
+                <option value="Bolo Clássico">Bolo Clássico</option>
+                <option value="Bolo de Festa">Bolo de Festa</option>
+                <option value="Bolo de Casamento">Bolo de Casamento</option>
+                <option value="Outro">Outro</option>
               </select>
             </div>
             <span class="err-msg" id="bolo-err" role="alert">Por favor, selecione um bolo.</span>
@@ -850,6 +851,9 @@
             <button type="submit" class="btn btn-dark btn-full" id="submitBtn">
               <span>Enviar encomenda</span>
             </button>
+          </div>
+          <div class="send-error" id="sendError" role="alert">
+            Ocorreu um erro ao enviar a encomenda. Tente novamente ou contacte-nos via WhatsApp.
           </div>
         </form>
         <div class="form-success" id="formSuccess" role="status" aria-live="polite" aria-atomic="true">
@@ -874,6 +878,8 @@
   </footer>
 
   <script>
+    const WORKER_URL = 'https://pastelaria-worker.tfbarata.workers.dev';
+
     // ── Scroll reveal ───────────────────────────────────
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -920,22 +926,50 @@
       document.getElementById(id).addEventListener('blur', () => check(id))
     );
 
-    document.getElementById('orderForm').addEventListener('submit', e => {
+    // ── Form submit ─────────────────────────────────────
+    document.getElementById('orderForm').addEventListener('submit', async e => {
       e.preventDefault();
+
       ['nome','email','telefone','data','bolo'].forEach(check);
       if (document.querySelector('.err')) {
         document.querySelector('.err').focus();
         return;
       }
+
       const btn = document.getElementById('submitBtn');
+      const sendError = document.getElementById('sendError');
+      sendError.classList.remove('show');
       btn.disabled = true;
       btn.querySelector('span').textContent = 'A enviar…';
-      setTimeout(() => {
+
+      const payload = {
+        nome:        document.getElementById('nome').value.trim(),
+        email:       document.getElementById('email').value.trim(),
+        telefone:    document.getElementById('telefone').value.trim(),
+        bolo:        document.getElementById('bolo').value,
+        data_entrega: document.getElementById('data').value,
+        descricao:   document.getElementById('descricao').value.trim(),
+      };
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error('Resposta inesperada do servidor');
+
         document.getElementById('orderForm').style.display = 'none';
         const s = document.getElementById('formSuccess');
         s.classList.add('show');
         s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 900);
+
+      } catch (err) {
+        sendError.classList.add('show');
+        btn.disabled = false;
+        btn.querySelector('span').textContent = 'Enviar encomenda';
+      }
     });
   </script>
 </body>
