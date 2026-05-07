@@ -28,7 +28,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Floating CTA pill ─────────────────────────────── */
     .float-cta {
       position: fixed;
       bottom: 100px;
@@ -73,7 +72,6 @@
     }
     .float-cta svg { flex-shrink: 0; }
 
-    /* ── WhatsApp button ───────────────────────────────── */
     .whatsapp-btn {
       position: fixed;
       bottom: 24px;
@@ -99,13 +97,8 @@
       transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, opacity .4s;
       animation: waPop .7s cubic-bezier(.34,1.56,.64,1) 1.8s forwards;
     }
-    @keyframes waPop {
-      to { opacity: 1; transform: scale(1); }
-    }
-    .whatsapp-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(37,211,102,.45);
-    }
+    @keyframes waPop { to { opacity: 1; transform: scale(1); } }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,.45); }
     .whatsapp-btn:active { transform: scale(.95); }
     .whatsapp-btn::before {
       content: '';
@@ -120,7 +113,6 @@
       100% { transform: scale(1.5); opacity: 0; }
     }
 
-    /* ── Scroll-reveal ─────────────────────────────────── */
     .reveal {
       opacity: 0;
       transform: translateY(36px);
@@ -139,11 +131,9 @@
       .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     }
 
-    /* ── Container ─────────────────────────────────────── */
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     @media (min-width: 640px) { .wrap { padding: 0 32px; } }
 
-    /* ── Section shared ────────────────────────────────── */
     section { padding: 72px 0; }
     @media (min-width: 768px) { section { padding: 110px 0; } }
     .eyebrow {
@@ -163,17 +153,10 @@
       color: var(--brown);
       margin-bottom: 18px;
     }
-    .gold-rule {
-      width: 44px; height: 2px;
-      background: var(--gold);
-      margin-bottom: 60px;
-    }
+    .gold-rule { width: 44px; height: 2px; background: var(--gold); margin-bottom: 60px; }
     .center { text-align: center; }
     .center .gold-rule { margin-left: auto; margin-right: auto; }
 
-    /* ══════════════════════════════════════════════════════
-       HERO
-    ══════════════════════════════════════════════════════ */
     .hero {
       min-height: 100svh;
       display: grid;
@@ -186,12 +169,7 @@
     }
     @media (min-width: 640px) { .hero { padding: 80px 32px; } }
 
-    .hero-rings {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+    .hero-rings { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
     .ring {
       position: absolute;
       border-radius: 50%;
@@ -219,7 +197,6 @@
     }
 
     .hero-inner { position: relative; z-index: 1; max-width: 700px; }
-
     .hero-mark {
       display: inline-block;
       width: 64px; height: 64px;
@@ -228,9 +205,7 @@
       transform: scale(.5) rotate(-15deg);
       animation: popIn .9s cubic-bezier(.34,1.56,.64,1) .2s forwards;
     }
-    @keyframes popIn {
-      to { opacity: 1; transform: scale(1) rotate(0deg); }
-    }
+    @keyframes popIn { to { opacity: 1; transform: scale(1) rotate(0deg); } }
 
     .hero-headline {
       font-family: 'Playfair Display', serif;
@@ -242,10 +217,7 @@
       margin-bottom: 28px;
       overflow: hidden;
     }
-    .hero-headline .line {
-      display: block;
-      overflow: hidden;
-    }
+    .hero-headline .line { display: block; overflow: hidden; }
     .hero-headline .word {
       display: inline-block;
       opacity: 0;
@@ -254,10 +226,7 @@
     }
     .hero-headline .line:nth-child(1) .word { animation-delay: .5s; }
     .hero-headline .line:nth-child(2) .word { animation-delay: .72s; }
-
-    @keyframes slideWord {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideWord { to { opacity: 1; transform: translateY(0); } }
 
     .hero-sub {
       font-size: 1.1rem;
@@ -268,26 +237,17 @@
       margin-bottom: 44px;
       animation: fadeUp .8s ease .95s forwards;
     }
-    .hero-cta {
-      opacity: 0;
-      animation: fadeUp .8s ease 1.15s forwards;
-    }
+    .hero-cta { opacity: 0; animation: fadeUp2 .8s ease 1.15s forwards; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: .78; transform: translateY(0); }
     }
-    .hero-cta { animation: fadeUp2 .8s ease 1.15s forwards; }
     @keyframes fadeUp2 {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-line {
-      width: 0; height: 2px;
-      background: var(--gold);
-      margin: 0 auto 28px;
-      animation: growLine .8s ease .4s forwards;
-    }
+    .hero-line { width: 0; height: 2px; background: var(--gold); margin: 0 auto 28px; animation: growLine .8s ease .4s forwards; }
     @keyframes growLine { to { width: 56px; } }
 
     .scroll-hint {
@@ -301,24 +261,9 @@
       opacity: 0;
       animation: fadeUp2 .8s ease 1.6s forwards;
     }
-    .scroll-hint span {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--brown);
-      opacity: .4;
-    }
-    .scroll-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: bounce 1.8s ease infinite;
-    }
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(6px); }
-    }
+    .scroll-hint span { font-size: .68rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--brown); opacity: .4; }
+    .scroll-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: bounce 1.8s ease infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
     .btn {
       display: inline-block;
@@ -351,38 +296,15 @@
     .btn-dark:hover { color: var(--brown); border-color: var(--gold); }
     .btn-full { width: 100%; text-align: center; display: block; }
 
-    /* ══════════════════════════════════════════════════════
-       BOLOS
-    ══════════════════════════════════════════════════════ */
     .bolos { background: var(--cream); }
-
-    .cakes-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
+    .cakes-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
     @media (min-width: 620px)  { .cakes-grid { grid-template-columns: repeat(2,1fr); } }
     @media (min-width: 900px)  { .cakes-grid { grid-template-columns: repeat(3,1fr); } }
 
-    .cake-card {
-      background: #fff;
-      border: 1px solid rgba(59,31,14,.09);
-      overflow: hidden;
-      cursor: default;
-      position: relative;
-    }
-    .cake-img-wrap {
-      overflow: hidden;
-      position: relative;
-    }
-    .cake-card img {
-      width: 100%; height: 230px;
-      object-fit: cover;
-      display: block;
-      transition: transform .6s cubic-bezier(.22,1,.36,1);
-    }
+    .cake-card { background: #fff; border: 1px solid rgba(59,31,14,.09); overflow: hidden; cursor: default; position: relative; }
+    .cake-img-wrap { overflow: hidden; position: relative; }
+    .cake-card img { width: 100%; height: 230px; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
     .cake-card:hover img { transform: scale(1.07); }
-
     .cake-card::after {
       content: '';
       position: absolute;
@@ -394,30 +316,11 @@
       transition: transform .35s cubic-bezier(.22,1,.36,1);
     }
     .cake-card:hover::after { transform: scaleY(1); }
-
     .cake-body { padding: 28px 30px; }
-    .cake-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.18rem;
-      font-weight: 600;
-      color: var(--brown);
-      margin-bottom: 8px;
-    }
-    .cake-desc {
-      font-size: .875rem;
-      color: var(--brown);
-      opacity: .6;
-      line-height: 1.6;
-    }
+    .cake-name { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 600; color: var(--brown); margin-bottom: 8px; }
+    .cake-desc { font-size: .875rem; color: var(--brown); opacity: .6; line-height: 1.6; }
 
-    /* ══════════════════════════════════════════════════════
-       PREÇOS
-    ══════════════════════════════════════════════════════ */
-    .precos {
-      background: var(--cream2);
-      position: relative;
-      overflow: hidden;
-    }
+    .precos { background: var(--cream2); position: relative; overflow: hidden; }
     .precos::before {
       content: '';
       position: absolute;
@@ -427,16 +330,8 @@
       right: -200px; top: -200px;
       pointer-events: none;
     }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
+    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 880px; margin: 0 auto; }
     @media (min-width: 620px) { .pricing-grid { grid-template-columns: repeat(3,1fr); } }
-
     .pricing-card {
       background: var(--cream);
       border: 1px solid rgba(59,31,14,.12);
@@ -445,16 +340,8 @@
       position: relative;
       transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s;
     }
-    .pricing-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(59,31,14,.1);
-    }
-    .pricing-card.featured {
-      background: #fff;
-      border: 2px solid var(--gold);
-      transform: translateY(-8px);
-      box-shadow: 0 12px 32px rgba(59,31,14,.1);
-    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(59,31,14,.1); }
+    .pricing-card.featured { background: #fff; border: 2px solid var(--gold); transform: translateY(-8px); box-shadow: 0 12px 32px rgba(59,31,14,.1); }
     .pricing-card.featured:hover { transform: translateY(-14px); }
     .pricing-card.featured::before {
       content: 'Mais popular';
@@ -470,50 +357,15 @@
       padding: 4px 18px;
       white-space: nowrap;
     }
-    .pricing-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--brown);
-      margin-bottom: 16px;
-    }
-    .pricing-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--brown);
-      line-height: 1;
-      transition: color .2s;
-    }
+    .pricing-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--brown); margin-bottom: 16px; }
+    .pricing-amount { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--brown); line-height: 1; transition: color .2s; }
     .pricing-card:hover .pricing-amount { color: var(--gold); }
-    .pricing-from {
-      display: block;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: .4;
-      margin-top: 6px;
-      margin-bottom: 24px;
-    }
-    .pricing-rule {
-      width: 28px; height: 1px;
-      background: var(--gold);
-      margin: 0 auto 22px;
-    }
-    .pricing-desc {
-      font-size: .875rem;
-      color: var(--brown);
-      opacity: .68;
-      line-height: 1.65;
-    }
+    .pricing-from { display: block; font-size: .7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; opacity: .4; margin-top: 6px; margin-bottom: 24px; }
+    .pricing-rule { width: 28px; height: 1px; background: var(--gold); margin: 0 auto 22px; }
+    .pricing-desc { font-size: .875rem; color: var(--brown); opacity: .68; line-height: 1.65; }
 
-    /* ══════════════════════════════════════════════════════
-       FORMULÁRIO
-    ══════════════════════════════════════════════════════ */
     .encomenda { background: var(--cream); }
     .form-wrap { max-width: 640px; }
-
     .form-row { display: grid; gap: 20px; }
     @media (min-width: 540px) { .form-row { grid-template-columns: 1fr 1fr; } }
     .form-group { margin-bottom: 20px; }
@@ -546,12 +398,8 @@
       transition: border-color .25s, box-shadow .25s;
     }
     input::placeholder, textarea::placeholder { color: var(--brown); opacity: .28; }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(201,168,76,.12);
-    }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,.12); }
     input.err, select.err, textarea.err { border-color: var(--red-err); }
-
     .err-msg { display: none; font-size: .78rem; color: var(--red-err); margin-top: 6px; }
     .err-msg.show { display: block; }
 
@@ -568,8 +416,41 @@
       border-top: 6px solid var(--brown);
       pointer-events: none; opacity: .55;
     }
-
     textarea { resize: vertical; min-height: 130px; }
+
+    /* Checkbox WhatsApp */
+    .wa-check-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: #f0faf4;
+      border: 1px solid rgba(37,211,102,.25);
+      margin-bottom: 24px;
+      cursor: pointer;
+    }
+    .wa-check-wrap input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      padding: 0;
+      margin-top: 2px;
+      accent-color: #25D366;
+      cursor: pointer;
+      border: 1px solid rgba(59,31,14,.18);
+    }
+    .wa-check-label {
+      font-size: .875rem;
+      color: var(--brown);
+      opacity: 1;
+      line-height: 1.5;
+      cursor: pointer;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+    .wa-check-label strong { font-weight: 700; }
 
     .form-success {
       display: none;
@@ -587,16 +468,9 @@
       margin: 0 auto 24px;
       animation: popIn .6s cubic-bezier(.34,1.56,.64,1) both;
     }
-    .form-success h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: var(--brown);
-      margin-bottom: 12px;
-    }
+    .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: var(--brown); margin-bottom: 12px; }
     .form-success p { color: var(--brown); opacity: .65; max-width: 360px; margin: 0 auto; }
 
-    /* Erro de envio */
     .send-error {
       display: none;
       margin-top: 16px;
@@ -608,16 +482,7 @@
     }
     .send-error.show { display: block; }
 
-    /* ══════════════════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════════════════ */
-    footer {
-      background: var(--brown);
-      padding: 48px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    footer { background: var(--brown); padding: 48px 24px; text-align: center; position: relative; overflow: hidden; }
     footer::before {
       content: 'Doce Encanto';
       position: absolute;
@@ -627,44 +492,24 @@
       font-style: italic;
       color: rgba(250,246,240,.03);
       white-space: nowrap;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%,-50%);
       pointer-events: none;
       user-select: none;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 8px;
-      display: block;
-    }
-    .footer-rule {
-      width: 32px; height: 1px;
-      background: var(--gold);
-      margin: 16px auto;
-    }
-    footer p {
-      font-size: .75rem;
-      letter-spacing: .8px;
-      color: var(--cream);
-      opacity: .4;
-    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 8px; display: block; }
+    .footer-rule { width: 32px; height: 1px; background: var(--gold); margin: 16px auto; }
+    footer p { font-size: .75rem; letter-spacing: .8px; color: var(--cream); opacity: .4; }
   </style>
 </head>
 <body>
 
-  <!-- WhatsApp -->
-  <a class="whatsapp-btn" href="https://wa.me/351900000000" target="_blank" rel="noopener"
-     aria-label="Contactar via WhatsApp">
+  <a class="whatsapp-btn" href="https://wa.me/351900000000" target="_blank" rel="noopener" aria-label="Contactar via WhatsApp">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.385.68 4.61 1.857 6.497L4 29l7.703-1.82A11.94 11.94 0 0 0 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3Zm6.27 16.565c-.26.733-1.52 1.4-2.08 1.454-.534.05-1.04.253-3.504-.73-2.946-1.18-4.82-4.18-4.964-4.374-.145-.194-1.18-1.57-1.18-2.996 0-1.427.747-2.13 1.012-2.42.266-.29.58-.362.773-.362.194 0 .387.002.556.01.178.008.417-.068.652.497.242.58.82 2.01.892 2.156.073.146.12.316.024.51-.096.193-.145.314-.29.484-.144.17-.303.38-.433.51-.144.146-.294.303-.126.594.168.29.747 1.233 1.603 1.997 1.102.983 2.032 1.287 2.322 1.432.29.145.46.12.628-.072.17-.193.724-.845.917-1.135.193-.29.387-.242.652-.145.266.097 1.687.795 1.976.94.29.145.483.218.556.34.072.12.072.7-.187 1.41Z"/>
     </svg>
   </a>
 
-  <!-- Floating CTA -->
   <div class="float-cta" id="floatCTA" aria-hidden="true">
     <a href="#encomenda">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -674,13 +519,9 @@
     </a>
   </div>
 
-  <!-- ═══ HERO ══════════════════════════════════════════ -->
   <section class="hero" id="hero" aria-labelledby="hero-title">
     <div class="hero-rings" aria-hidden="true">
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
     </div>
     <div class="hero-inner">
       <div class="hero-mark" aria-hidden="true">
@@ -694,28 +535,22 @@
           <path d="M23 46h18" stroke="#3B1F0E" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
-
       <div class="hero-line" aria-hidden="true"></div>
-
       <h1 class="hero-headline" id="hero-title">
         <span class="line"><span class="word">Feito com tempo.</span></span>
         <span class="line"><span class="word">Feito com amor.</span></span>
       </h1>
-
       <p class="hero-sub">Encomende o seu bolo artesanal com antecedência.</p>
-
       <div class="hero-cta">
         <a href="#encomenda" class="btn btn-dark"><span>Fazer encomenda</span></a>
       </div>
     </div>
-
     <div class="scroll-hint" aria-hidden="true">
       <span>Descobrir</span>
       <div class="scroll-dot"></div>
     </div>
   </section>
 
-  <!-- ═══ BOLOS ═════════════════════════════════════════ -->
   <section class="bolos" id="bolos" aria-labelledby="bolos-title">
     <div class="wrap">
       <div class="center">
@@ -726,8 +561,7 @@
       <div class="cakes-grid">
         <article class="cake-card reveal left d1">
           <div class="cake-img-wrap">
-            <img src="https://placehold.co/400x300/C9A84C/FAF6F0?text=+"
-                 alt="Bolo de Chocolate Belga" loading="lazy" width="400" height="300">
+            <img src="https://placehold.co/400x300/C9A84C/FAF6F0?text=+" alt="Bolo de Chocolate Belga" loading="lazy" width="400" height="300">
           </div>
           <div class="cake-body">
             <p class="cake-name">Bolo de Chocolate Belga</p>
@@ -736,8 +570,7 @@
         </article>
         <article class="cake-card reveal up d2">
           <div class="cake-img-wrap">
-            <img src="https://placehold.co/400x300/3B1F0E/FAF6F0?text=+"
-                 alt="Tarte de Limão Merengada" loading="lazy" width="400" height="300">
+            <img src="https://placehold.co/400x300/3B1F0E/FAF6F0?text=+" alt="Tarte de Limão Merengada" loading="lazy" width="400" height="300">
           </div>
           <div class="cake-body">
             <p class="cake-name">Tarte de Limão Merengada</p>
@@ -746,8 +579,7 @@
         </article>
         <article class="cake-card reveal right d3">
           <div class="cake-img-wrap">
-            <img src="https://placehold.co/400x300/6B3A2A/FAF6F0?text=+"
-                 alt="Bolo de Amêndoa Alentejano" loading="lazy" width="400" height="300">
+            <img src="https://placehold.co/400x300/6B3A2A/FAF6F0?text=+" alt="Bolo de Amêndoa Alentejano" loading="lazy" width="400" height="300">
           </div>
           <div class="cake-body">
             <p class="cake-name">Bolo de Amêndoa Alentejano</p>
@@ -758,7 +590,6 @@
     </div>
   </section>
 
-  <!-- ═══ PREÇOS ════════════════════════════════════════ -->
   <section class="precos" id="precos" aria-labelledby="precos-title">
     <div class="wrap">
       <div class="center">
@@ -792,7 +623,6 @@
     </div>
   </section>
 
-  <!-- ═══ ENCOMENDA ══════════════════════════════════════ -->
   <section class="encomenda" id="encomenda" aria-labelledby="encomenda-title">
     <div class="wrap">
       <div>
@@ -805,22 +635,19 @@
           <div class="form-row" style="margin-bottom:20px">
             <div class="form-group">
               <label for="nome">Nome completo</label>
-              <input type="text" id="nome" name="nome" autocomplete="name"
-                     placeholder="O seu nome" required aria-describedby="nome-err">
+              <input type="text" id="nome" name="nome" autocomplete="name" placeholder="O seu nome" required aria-describedby="nome-err">
               <span class="err-msg" id="nome-err" role="alert">Por favor, indique o seu nome.</span>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" autocomplete="email"
-                     placeholder="email@exemplo.com" required aria-describedby="email-err">
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="email@exemplo.com" required aria-describedby="email-err">
               <span class="err-msg" id="email-err" role="alert">Por favor, indique um email válido.</span>
             </div>
           </div>
           <div class="form-row" style="margin-bottom:20px">
             <div class="form-group">
               <label for="telefone">Contacto telefónico</label>
-              <input type="tel" id="telefone" name="telefone" autocomplete="tel"
-                     placeholder="+351 9XX XXX XXX" required aria-describedby="tel-err">
+              <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="+351 9XX XXX XXX" required aria-describedby="tel-err">
               <span class="err-msg" id="tel-err" role="alert">Por favor, indique um contacto.</span>
             </div>
             <div class="form-group">
@@ -844,10 +671,18 @@
           </div>
           <div class="form-group">
             <label for="descricao">Descrição / pedido especial <span class="opt">(opcional)</span></label>
-            <textarea id="descricao" name="descricao"
-              placeholder="Diga-nos o sabor, decoração ou qualquer detalhe especial."></textarea>
+            <textarea id="descricao" name="descricao" placeholder="Diga-nos o sabor, decoração ou qualquer detalhe especial."></textarea>
           </div>
-          <div style="margin-top:28px">
+
+          <label class="wa-check-wrap" for="waCheck">
+            <input type="checkbox" id="waCheck" name="waCheck">
+            <span class="wa-check-label">
+              <strong>Autorizo ser contactado via WhatsApp</strong><br>
+              Podemos usar o número indicado para confirmar a sua encomenda por WhatsApp.
+            </span>
+          </label>
+
+          <div style="margin-top:8px">
             <button type="submit" class="btn btn-dark btn-full" id="submitBtn">
               <span>Enviar encomenda</span>
             </button>
@@ -859,8 +694,7 @@
         <div class="form-success" id="formSuccess" role="status" aria-live="polite" aria-atomic="true">
           <div class="success-circle" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M6 14.5l5.5 5.5 10.5-11" stroke="#C9A84C" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 14.5l5.5 5.5 10.5-11" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Encomenda recebida!</h3>
@@ -870,7 +704,6 @@
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═════════════════════════════════════════ -->
   <footer>
     <span class="footer-logo reveal up">Doce Encanto</span>
     <div class="footer-rule reveal scale d1"></div>
@@ -880,18 +713,13 @@
   <script>
     const WORKER_URL = 'https://pastelaria-worker.tfbarata.workers.dev';
 
-    // ── Scroll reveal ───────────────────────────────────
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('done');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('done'); io.unobserve(e.target); }
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ── Floating CTA: show after hero ───────────────────
     const floatCTA = document.getElementById('floatCTA');
     const heroEl   = document.querySelector('.hero');
     const ctaObs = new IntersectionObserver(([e]) => {
@@ -900,10 +728,8 @@
     }, { threshold: 0.1 });
     ctaObs.observe(heroEl);
 
-    // ── Min date = today ────────────────────────────────
     document.getElementById('data').min = new Date().toISOString().split('T')[0];
 
-    // ── Form validation ─────────────────────────────────
     const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
     function setErr(fId, eId, bad) {
@@ -926,7 +752,6 @@
       document.getElementById(id).addEventListener('blur', () => check(id))
     );
 
-    // ── Form submit ─────────────────────────────────────
     document.getElementById('orderForm').addEventListener('submit', async e => {
       e.preventDefault();
 
@@ -943,12 +768,13 @@
       btn.querySelector('span').textContent = 'A enviar…';
 
       const payload = {
-        nome:        document.getElementById('nome').value.trim(),
-        email:       document.getElementById('email').value.trim(),
-        telefone:    document.getElementById('telefone').value.trim(),
-        bolo:        document.getElementById('bolo').value,
+        nome:         document.getElementById('nome').value.trim(),
+        email:        document.getElementById('email').value.trim(),
+        telefone:     document.getElementById('telefone').value.trim(),
+        bolo:         document.getElementById('bolo').value,
         data_entrega: document.getElementById('data').value,
-        descricao:   document.getElementById('descricao').value.trim(),
+        descricao:    document.getElementById('descricao').value.trim(),
+        autoriza_whatsapp: document.getElementById('waCheck').checked,
       };
 
       try {
@@ -958,7 +784,7 @@
           body: JSON.stringify(payload),
         });
 
-        if (!res.ok) throw new Error('Resposta inesperada do servidor');
+        if (!res.ok) throw new Error('Erro no servidor');
 
         document.getElementById('orderForm').style.display = 'none';
         const s = document.getElementById('formSuccess');
